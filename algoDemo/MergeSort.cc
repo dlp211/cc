@@ -39,9 +39,9 @@ void sort(int *arr, int *workspace, unsigned start, unsigned end);
 
 void sort(int *arr, unsigned start, unsigned end)
 {
-	int *workspace = (int *) malloc(sizeof(int) * end - start + 1);
+	int *workspace = new int[end - start + 1];
 	sort(arr, workspace, start, end);
-	free(workspace);
+	delete [] workspace;
 }
 
 void sort(int *arr, int *workspace, unsigned start, unsigned end)
