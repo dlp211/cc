@@ -50,7 +50,7 @@ void sort(int *arr, const unsigned size)
 int main(int argc, char **argv)
 {
 	int arr[10] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-	sort(arr, end(arr) - begin(arr));
+	sort(arr, std::end(arr) - std::begin(arr));
 	for(const auto i : arr)
 		cout << i << " ";
 	cout << endl;
