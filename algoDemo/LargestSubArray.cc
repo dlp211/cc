@@ -38,14 +38,19 @@ using std::vector;
 
 vector<int> largestSubArray(const vector<int> &vec)
 {
+	if (vec.empty())
+		return {};
 	decltype(vec.size()) j = 0; //vector<int>::size_type
 	int sum = vec[j];
-	while (vec[j] < 0 && j < vec.size()) { //this finds the first positive or
-		if (sum < vec[++j])			   	   //the negative closest to 0
-			sum = vec[j];
-	}
 	auto beg = j;
-	auto end = j; //indices of the largest initial subarray
+	auto end = j;
+	while (vec[j] < 0 && ++j < vec.size()) { //this finds the first positive or
+		if (sum < vec[j]) {				   //the negative closest to 0
+			sum = vec[j];
+			beg = j;
+			end = j;
+		}
+	}
 
 	while(j++ < vec.size()) {
 		if (vec[j] > 0) {
@@ -74,7 +79,12 @@ vector<int> largestSubArray(const vector<int> &vec)
 
 int main()
 {
-	vector<int> vec {13,-3,-25,20,-3,-16,-23,18,20,7,12,-5,-22,15,-4,7};
+	//vector<int> vec {13,-3,-25,20,-3,-16,-23,18,20,7,12,-5,-22,15,-4,7};
+	//vector<int> vec {-12, 0, -10};
+	//vector<int> vec {-12, -11, -10, -9, -10};
+	//vector<int> vec {5};
+	//vector<int> vec {};
+	vector<int> vec {12, 13, 15, 17, 18};
 	//largest subarray is [7,10]
 	vector<int> subvec(largestSubArray(vec));
 
