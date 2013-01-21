@@ -32,19 +32,33 @@
  *************************************************************/
 
 #include <iostream>
- using std::endl; using std::cout; using std::begin; using std::end;
+using std::endl; using std::cout; using std::begin; using std::end;
+#include <vector>
+using std::vector;
 
-void merge(int *arr, int *workspace, unsigned start, unsigned middle, unsigned end);
-void sort(int *arr, int *workspace, unsigned start, unsigned end);
+void merge(vector<int> &, vector<int> &, unsigned, unsigned, unsigned);
+void sort(vector<int> &, vector<int> &, unsigned, unsigned);
+void sort(vector<int> &, unsigned, unsigned);
 
-void sort(int *arr, unsigned start, unsigned end)
+int main(int argc, char **argv)
 {
-	int *workspace = new int[end - start + 1];
-	sort(arr, workspace, start, end);
-	delete [] workspace;
+	vector<int> arr {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+	sort(arr, 0, 19);
+
+	for (const auto i : arr)
+		cout << i << " ";
+	cout << endl;
+
+	return 0;
 }
 
-void sort(int *arr, int *workspace, unsigned start, unsigned end)
+void sort(vector<int> &arr, unsigned start, unsigned end)
+{
+	vector<int> workspace(arr.size());
+	sort(arr, workspace, start, end);
+}
+
+void sort(vector<int> &arr, vector<int> &workspace, unsigned start, unsigned end)
 {
     if (start < end) {
         unsigned middle = (end - start) / 2 + start;
@@ -54,7 +68,7 @@ void sort(int *arr, int *workspace, unsigned start, unsigned end)
     }
 }
 
-void merge(int *arr, int *workspace, unsigned start, unsigned middle, unsigned end)
+void merge(vector<int> &arr, vector<int> &workspace, unsigned start, unsigned middle, unsigned end)
 {
 	unsigned j = 0;
 	unsigned begin1 = start;
@@ -75,16 +89,4 @@ void merge(int *arr, int *workspace, unsigned start, unsigned middle, unsigned e
 
 	for(j = 0; j < n; ++j)
 		arr[start + j] = workspace[j];
-}
-
-int main(int argc, char **argv)
-{
-	int arr[20] {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
-	sort(arr, 0, 19);
-
-	for (const auto i : arr)
-		cout << i << " ";
-	cout << endl;
-
-	return 0;
 }
