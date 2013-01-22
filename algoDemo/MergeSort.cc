@@ -73,7 +73,9 @@ void sort(vector<int>::iterator begin, vector<int>::iterator end)
 	}
 }
 
-void merge(vector<int>::iterator begin, vector<int>::iterator middle, vector<int>::iterator end)
+void merge(vector<int>::iterator begin, 
+		   vector<int>::iterator middle,
+		   vector<int>::iterator end)
 {
 	vector<int> l_vec (begin, middle);
 	vector<int> r_vec (middle, end + 1);
@@ -103,7 +105,10 @@ void sort(vector<int> &arr, unsigned start, unsigned end)
 	sort(arr, workspace, start, end);
 }
 
-void sort(vector<int> &arr, vector<int> &workspace, unsigned start, unsigned end)
+void sort(vector<int> &arr, 
+		  vector<int> &workspace,
+		  unsigned start,
+		  unsigned end)
 {
     if (start < end) {
         unsigned middle = (end - start) / 2 + start;
@@ -113,7 +118,11 @@ void sort(vector<int> &arr, vector<int> &workspace, unsigned start, unsigned end
     }
 }
 
-void merge(vector<int> &arr, vector<int> &workspace, unsigned start, unsigned middle, unsigned end)
+void merge(vector<int> &arr,
+		   vector<int> &workspace,
+		   unsigned start,
+		   unsigned middle,
+		   unsigned end)
 {
 	unsigned j = 0;
 	unsigned begin1 = start;
